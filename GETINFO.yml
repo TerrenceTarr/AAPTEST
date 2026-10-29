@@ -1,0 +1,10 @@
+---
+- name: Display switch information received from ZTP
+  hosts: localhost
+  connection: local
+  gather_facts: false
+
+  tasks:
+    - name: Print submitted switch details
+      ansible.builtin.debug:
+        var: device_report
