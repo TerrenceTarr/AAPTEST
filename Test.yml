@@ -1,10 +1,15 @@
 ---
-- name: Test Python-triggered automation
-  hosts: localhost
-  connection: local
+- name: Retrieve Cisco Catalyst running configuration
+  hosts: cisco_switches
   gather_facts: false
 
   tasks:
-    - name: Confirm AAP can execute this playbook
+    - name: Retrieve running configuration
+      cisco.ios.ios_command:
+        commands:
+          - show running-config
+      register: switch_config
+
+    - name: Display running configuration
       ansible.builtin.debug:
-        msg: "Success! AAP retrieved and ran this playbook."
+        var: switch_config.stdout[0]
