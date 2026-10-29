@@ -1,0 +1,10 @@
+---
+- name: Test Python-triggered automation
+  hosts: localhost
+  connection: local
+  gather_facts: false
+
+  tasks:
+    - name: Confirm AAP can execute this playbook
+      ansible.builtin.debug:
+        msg: "Success! AAP retrieved and ran this playbook."
