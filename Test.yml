@@ -1,15 +1,9 @@
----
-- name: Retrieve Cisco Catalyst running configuration
-  hosts: cisco_switches
+- name: Print message received from Python
+  hosts: localhost
+  connection: local
   gather_facts: false
 
   tasks:
-    - name: Retrieve running configuration
-      cisco.ios.ios_command:
-        commands:
-          - show running-config
-      register: switch_config
-
-    - name: Display running configuration
+    - name: Display submitted message
       ansible.builtin.debug:
-        var: switch_config.stdout[0]
+        msg: "{{ message | default('No message provided') }}"
